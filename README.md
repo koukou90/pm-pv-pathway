@@ -18,8 +18,6 @@ Data and code for "Particulate Matter Pollution and Utility-Scale Photovoltaic O
 | Hourly PM2.5 and PM10 | http://eia-data.com/pm25_hour/ | No — too large to host |
 | Historical weather variables | https://open-meteo.com/ | No — too large to host |
 
-**The Hebei PV data are the public PVOD dataset and are not redistributed in this repository.** Please obtain them directly from https://github.com/yaotc/PVODataset and cite the original publication.
-
 The air-quality and weather datasets are publicly downloadable from the sources listed above but are too large to include here. The analysis matches them to each farm by location and timestamp; see the manuscript for the matching procedure.
 
 ## File format — `PV_Yulin/`
