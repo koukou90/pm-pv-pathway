@@ -6,14 +6,14 @@ Data and code for "Particulate Matter Pollution and Utility-Scale Photovoltaic O
 
 | Path | Description |
 |---|---|
-| `PV_榆林/` | PV operating records for the five utility-scale farms in Yulin, China (2021), 15-minute resolution |
+| `PV_Yulin/` | PV operating records for the five utility-scale farms in Yulin, China (2021), 15-minute resolution |
 | `Installed Capacity.txt` | Installed capacity of the Hebei (10 farms) and Yulin (5 farms) plants |
 
 ## Data sources
 
 | Dataset | Source | Available here |
 |---|---|---|
-| Yulin PV operating data (5 farms, 2021) | Farm operating records used in this study | Yes — `PV_榆林/` |
+| Yulin PV operating data (5 farms, 2021) | Farm operating records used in this study | Yes — `PV_Yulin/` |
 | Hebei PV operating data (10 farms, 2018–2019) | PVOD, Yao et al. (2021), *Solar Energy* — https://github.com/yaotc/PVODataset | No — obtain from the original repository |
 | Hourly PM2.5 and PM10 | http://eia-data.com/pm25_hour/ | No — too large to host |
 | Historical weather variables | https://open-meteo.com/ | No — too large to host |
@@ -22,27 +22,26 @@ Data and code for "Particulate Matter Pollution and Utility-Scale Photovoltaic O
 
 The air-quality and weather datasets are publicly downloadable from the sources listed above but are too large to include here. The analysis matches them to each farm by location and timestamp; see the manuscript for the matching procedure.
 
-## File format — `PV_榆林/`
+## File format — `PV_Yulin/`
 
-One `.xlsx` file per farm, 15-minute resolution, covering 2021-01-01 to 2021-12-31. Column headers are in Chinese:
+One `.xlsx` file per farm, 15-minute resolution, covering 2021-01-01 to 2021-12-31.
 
 | Column | Meaning | Unit |
 |---|---|---|
-| `时间` | Timestamp, local time (Beijing) | — |
-| `总辐射` | Total (global horizontal) irradiance | W m⁻² |
-| `直射辐射` | Direct horizontal component | W m⁻² |
-| `散射辐射` | Diffuse irradiance | W m⁻² |
-| `气温` | Air temperature | °C |
-| `气压` | Surface pressure | hPa |
-| `湿度` | Relative humidity | % |
-| `实际功率` | Actual power output | MW |
-| `额定功率/MW` | Installed capacity | MW |
+| `time` | Timestamp, local time (Beijing) | — |
+| `ghi` | Global horizontal irradiance | W m⁻² |
+| `direct` | Direct horizontal component | W m⁻² |
+| `diffuse` | Diffuse irradiance | W m⁻² |
+| `temperature` | Air temperature | °C |
+| `pressure` | Surface pressure | hPa |
+| `humidity` | Relative humidity | % |
+| `power_mw` | Actual power output | MW |
+| `capacity_mw` | Installed capacity | MW |
 
 Notes for reuse:
 
-- `Site1` names the power column `实际功率/MW`; `Site2`–`Site5` name it `实际功率`. Both are in MW.
-- Each file contains 35,026–35,027 rows against 35,040 expected 15-minute intervals in 2021 (≈99.96% complete).
-- `直射辐射` is a horizontal-plane direct component. It is close to, but not exactly, `总辐射 − 散射辐射` (1–5% higher). The analyses in the paper define the direct component as `总辐射 − 散射辐射` truncated at zero, so that the definition is identical in both regions — the Hebei source does not report a direct column.
+- Each file contains 35,025–35,026 data rows against 35,040 expected 15-minute intervals in 2021 (≈99.96% complete).
+- `direct` is a horizontal-plane direct component. It is close to, but not exactly, `ghi − diffuse` (1–5% higher). The analyses in the paper define the direct component as `ghi − diffuse` truncated at zero, so that the definition is identical in both regions — the Hebei source does not report a direct column.
 - The raw 15-minute records are aggregated to hourly resolution before matching with the air-quality and weather data.
 
 ## Installed capacity
